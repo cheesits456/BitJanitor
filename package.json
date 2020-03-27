@@ -1,0 +1,30 @@
+{
+  "name": "bitjanitor",
+  "version": "1.0.0",
+  "description": "A PC cleanup utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheesits456/BitJanitor.git"
+  },
+  "keywords": [
+    "bit",
+    "janitor",
+    "bitjanitor",
+    "pc",
+    "cleanup",
+    "clean",
+    "ccleaner",
+    "fresh",
+    "freshen"
+  ],
+  "author": "cheesits456",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/cheesits456/BitJanitor/issues"
+  },
+  "homepage": "https://github.com/cheesits456/BitJanitor#readme"
+}
