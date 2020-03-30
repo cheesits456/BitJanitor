@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # compiled program
-test-win32-x64/
+BitJanitor-win32-x64/
