@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "compile": "electron-packager . BitJanitor --platform=win32 --arch=x64 --overwrite --icon=./icon/icon.ico --asar"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,12 @@
     "url": "https://github.com/cheesits456/BitJanitor/issues"
   },
   "homepage": "https://github.com/cheesits456/BitJanitor#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@ckeditor/ckeditor-cloud-services-core": "^18.0.0",
+    "lodash-es": "^4.17.15",
+    "metro4": "^4.3.6",
+    "style-loader": "^1.1.3"
+  },
   "devDependencies": {
     "electron": "^8.2.0"
   }
