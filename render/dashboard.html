@@ -1,6 +1,9 @@
 <div class="row border-bottom bd-lightGray m-3">
     <div class="cell-md-4 d-flex flex-align-center">
-        <h3 class="dashboard-section-title  text-center text-left-md w-100">BitJanitor <small>version 1.0.0</small></h3>
+        <h3 class="dashboard-section-title  text-center text-left-md w-100">BitJanitor <small id="version"><script>
+            document.getElementById("version").innerHTML = "alpha " +  require('electron').remote.app.getVersion()
+        </script>
+        </small></h3>
     </div>
 
     <div class="cell-md-8 d-flex flex-justify-center flex-justify-end-md flex-align-center">
@@ -15,28 +18,41 @@
 <div class="row mt-2">
     <div class="cell-lg-3 cell-sm-6 mt-2">
         <div class="icon-box border bd-cyan">
-            <div class="icon bg-cyan fg-white"><span class="mif-cog"></span></div>
+            <div class="icon bg-cyan fg-white"><span class="mif-chart-bars"></span></div>
             <div class="content p-4">
-                <div class="text-upper">Stat 1</div>
-                <div class="text-upper text-bold text-lead">90%</div>
+                <div class="text-upper">RAM</div>
+                <div id="stat-ram" class="text-upper text-bold text-lead"><script>
+                    document.getElementById("stat-ram").innerHTML = Math.round(require("os").totalmem() / 1024 / 1024 / 1024) + " GB"
+                </script></div>
             </div>
         </div>
     </div>
     <div class="cell-lg-3 cell-sm-6 mt-2">
         <div class="icon-box border bd-red">
-            <div class="icon bg-red fg-white"><span class="mif-google-plus"></span></div>
+            <div class="icon bg-red fg-white"><span class="mif-server"></span></div>
             <div class="content p-4">
-                <div class="text-upper">Stat 2</div>
-                <div class="text-upper text-bold text-lead">41,410</div>
+                <div class="text-upper">CPU</div>
+                <div id="stat-cpu" class="text-upper text-bold text-lead">Loading. . .<script>
+                    require("systeminformation").cpu().then(data => {
+                        document.getElementById("stat-cpu").innerHTML = data.cores + " cores @<br>" + data.speedmax + " GHz<br>"
+                    })
+                </script></div>
             </div>
         </div>
     </div>
     <div class="cell-lg-3 cell-sm-6 mt-2">
         <div class="icon-box border bd-green">
-            <div class="icon bg-green fg-white"><span class="mif-cart"></span></div>
+            <div class="icon bg-green fg-white"><span class="mif-drive2"></span></div>
             <div class="content p-4">
-                <div class="text-upper">Stat 3</div>
-                <div class="text-upper text-bold text-lead">1024</div>
+                <div class="text-upper">Storage</div>
+                <div id="stat-storage" class="text-upper text-bold text-lead">Loading. . .<script>
+                    require("systeminformation").fsSize().then(data => {
+                        console.log(data);
+                        data.forEach(drive => {
+                            if (drive.fs === "C:") document.getElementById("stat-storage").innerHTML = (Math.round((drive.size - drive.used) / 1024 / 1024 / 1024 * 100) / 100) + " GB<br>free"
+                        })
+                    })
+                </script></div>
             </div>
         </div>
     </div>
@@ -44,8 +60,10 @@
         <div class="icon-box border bd-orange">
             <div class="icon bg-orange fg-white"><span class="mif-users"></span></div>
             <div class="content p-4">
-                <div class="text-upper">Stat 4</div>
-                <div class="text-upper text-bold text-lead">3,300</div>
+                <div class="text-upper">User</div>
+                <div id="stat-user" class="text-upper text-bold text-lead"><script>
+                    document.getElementById("stat-user").innerHTML = process.env.USERNAME
+                </script></div>
             </div>
         </div>
     </div>
