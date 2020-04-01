@@ -16,6 +16,11 @@ function createWindow() {
   win.maximize();
   win.loadFile(path.join("render", "index.html"));
 
+  win.webContents.on('new-window', function(e, url) {
+  e.preventDefault();
+  require('electron').shell.openExternal(url);
+});
+
 }
 
 // This method will be called when Electron has finished

@@ -1,6 +1,6 @@
 {
   "name": "bitjanitor",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A PC cleanup utility",
   "main": "index.js",
   "scripts": {
