@@ -2,97 +2,97 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Metro 4 -->
-    <link rel="stylesheet" href="vendors/metro4/css/metro-all.min.css">
-    <link rel="stylesheet" href="css/index.css">
+	<!-- Metro 4 -->
+	<link rel="stylesheet" href="vendors/metro4/css/metro-all.min.css">
+	<link rel="stylesheet" href="css/index.css">
 
-    <title>BitJanitor</title>
+	<title>BitJanitor</title>
 
-    <script>
-        window.on_page_functions = [];
-    </script>
+	<script>
+		window.on_page_functions = [];
+	</script>
 </head>
 
 <body class="m4-cloak h-vh-100">
-    <div data-role="navview" data-toggle="#paneToggle" data-expand="xl" data-compact="lg" data-active-state="true">
-        <div class="navview-pane">
-            <div class="bg-cyan d-flex flex-align-center">
-                <button class="pull-button m-0 bg-darkCyan-hover">
-                    <span class="mif-menu fg-white"></span>
-                </button>
-                <h2 class="text-light m-0 fg-white pl-7" style="line-height: 52px">BitJanitor</h2>
-            </div>
+	<div data-role="navview" data-toggle="#paneToggle" data-expand="xl" data-compact="lg" data-active-state="true">
+		<div class="navview-pane">
+			<div class="bg-cyan d-flex flex-align-center">
+				<button class="pull-button m-0 bg-darkCyan-hover">
+					<span class="mif-menu fg-white"></span>
+				</button>
+				<h2 class="text-light m-0 fg-white pl-7" style="line-height: 52px">BitJanitor</h2>
+			</div>
 
-            <ul class="navview-menu mt-4" id="side-menu">
-                <li>
-                    <a href="#dashboard">
-                        <span class="icon"><span class="mif-meter"></span></span>
-                        <span id="test" class="caption">Dashboard</span>
-                    </a>
-                </li>
-                <hr style="margin: 1em; background-color: #1ba1e2">
-                <li>
-                    <a href="#find-temp">
-                        <span class="icon"><span class="mif-file-empty"></span></span>
-                        <span class="caption">Clean Temporary Files</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#find-duplicates">
-                        <span class="icon"><span class="mif-files-empty"></span></span>
-                        <span class="caption">Clean Duplicate Files</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#find-large">
-                        <span class="icon"><span class="mif-description"></span></span>
-                        <span class="caption">Clean Large Files</span>
-                    </a>
-                </li>
-                <li style="position: absolute; bottom: 0; width: 100%">
-                    <a href="#credits">
-                        <span class="icon"><span class="mif-list"></span></span>
-                        <span class="caption">Credits</span>
-                    </a>
-                </li>
-            </ul>
+			<ul class="navview-menu mt-4" id="side-menu">
+				<li>
+					<a href="#dashboard">
+						<span class="icon"><span class="mif-meter"></span></span>
+						<span id="test" class="caption">Dashboard</span>
+					</a>
+				</li>
+				<hr style="margin: 1em; background-color: #1ba1e2">
+				<li>
+					<a href="#find-temp">
+						<span class="icon"><span class="mif-file-empty"></span></span>
+						<span class="caption">Clean Temporary Files</span>
+					</a>
+				</li>
+				<li>
+					<a href="#find-duplicates">
+						<span class="icon"><span class="mif-files-empty"></span></span>
+						<span class="caption">Clean Duplicate Files</span>
+					</a>
+				</li>
+				<li>
+					<a href="#find-large">
+						<span class="icon"><span class="mif-description"></span></span>
+						<span class="caption">Clean Large Files</span>
+					</a>
+				</li>
+				<li style="position: absolute; bottom: 0; width: 100%">
+					<a href="#credits">
+						<span class="icon"><span class="mif-list"></span></span>
+						<span class="caption">Credits</span>
+					</a>
+				</li>
+			</ul>
 
-            <div class="w-100 text-center text-small data-box p-2 border-top bd-grayMouse"
-                style="position: absolute; bottom: 0">
-                <div>&copy; 2020 <a href="mailto:quin@cheesits456.dev"
-                        class="text-muted fg-white-hover no-decor">cheesits456</a></div>
-                <div>Created with <a href="https://nodejs.org" class="text-muted fg-white-hover no-decor">NodeJS</a>
-                </div>
-            </div>
-        </div>
+			<div class="w-100 text-center text-small data-box p-2 border-top bd-grayMouse"
+				style="position: absolute; bottom: 0">
+				<div>&copy; 2020 <a href="mailto:quin@cheesits456.dev"
+						class="text-muted fg-white-hover no-decor">cheesits456</a></div>
+				<div>Created with <a href="https://nodejs.org" class="text-muted fg-white-hover no-decor">NodeJS</a>
+				</div>
+			</div>
+		</div>
 
-        <div class="navview-content h-100">
-            <div data-role="appbar" class="pos-absolute bg-darkCyan fg-white">
+		<div class="navview-content h-100">
+			<div data-role="appbar" class="pos-absolute bg-darkCyan fg-white">
 
-                <a href="#" class="app-bar-item d-block d-none-lg" id="paneToggle"><span class="mif-menu"></span></a>
+				<a href="#" class="app-bar-item d-block d-none-lg" id="paneToggle"><span class="mif-menu"></span></a>
 
-                <div class="app-bar-container ml-auto">
-                    <p id="version" class="app-bar-item version">Loading. . .</a>
-                </div>
-            </div>
+				<div class="app-bar-container ml-auto">
+					<p id="version" class="app-bar-item version">Loading. . .</a>
+				</div>
+			</div>
 
-            <div id="content-wrapper" class="content-inner h-100" style="overflow-y: auto"></div>
-        </div>
-    </div>
+			<div id="content-wrapper" class="content-inner h-100" style="overflow-y: auto"></div>
+		</div>
+	</div>
 
 
-    <!-- jQuery first, then Metro UI JS -->
-    <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
-    <script src="vendors/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendors/qrcode/qrcode.min.js"></script>
-    <script src="vendors/jsbarcode/JsBarcode.all.min.js"></script>
-    <script src="vendors/ckeditor/ckeditor.js"></script>
-    <script src="vendors/metro4/js/metro.min.js"></script>
-    <script src="js/index.js"></script>
+	<!-- jQuery first, then Metro UI JS -->
+	<script src="vendors/jquery/jquery-3.4.1.min.js"></script>
+	<script src="vendors/chartjs/Chart.bundle.min.js"></script>
+	<script src="vendors/qrcode/qrcode.min.js"></script>
+	<script src="vendors/jsbarcode/JsBarcode.all.min.js"></script>
+	<script src="vendors/ckeditor/ckeditor.js"></script>
+	<script src="vendors/metro4/js/metro.min.js"></script>
+	<script src="js/index.js"></script>
 </body>
 
 </html>

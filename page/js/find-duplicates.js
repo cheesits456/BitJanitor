@@ -1,6 +1,6 @@
-Array.prototype.remove = function(a) {
-  for (var b = 0; this.includes(a);) this.splice(this.indexOf(a), 1), b++;
-  return this;
+Array.prototype.remove = function (a) {
+	for (var b = 0; this.includes(a);) this.splice(this.indexOf(a), 1), b++;
+	return this;
 };
 
 
@@ -8,11 +8,6 @@ Array.prototype.remove = function(a) {
 fs = require("fs");
 path = require("path");
 stats = 0;
-
-
-// Set version number
-document.getElementById("version").innerHTML = `alpha ${require("../package.json").version} build ${require("../data.json").build}`;
-
 
 // Set panel height
 document.getElementById("panel-progress").style.height = `${document.getElementById("panel-folder").offsetHeight}px`
@@ -26,12 +21,12 @@ document.getElementById("search-dir").value = require("path").join(process.env.U
 function getDir() {
 	const { dialog } = require('electron').remote;
 	dialog.showOpenDialog({
-    properties: ['openDirectory']
+		properties: ['openDirectory']
 	}).then(dir => document.getElementById("search-dir").value = dir.filePaths[0]);
 }
 
 function scan() {
-  document.getElementById("button-scan").setAttribute("onClick", "Metro.toast.create('There is already a scan in progress')");
+	document.getElementById("button-scan").setAttribute("onClick", "Metro.toast.create('There is already a scan in progress')");
 	stats = 0;
 	const dir = document.getElementById("search-dir").value,
 		algorithm = "sha256";
@@ -40,34 +35,34 @@ function scan() {
 	document.getElementById("status").innerHTML = `<span class="text-medium">Scanning . . .</span>`;
 	document.getElementById("step1").innerHTML = "<br><span class='text-medium'>Step 1/3:</span> Building file list [0 files found]";
 
-	walk(dir, async function(err, results) {
-  	if (err) throw err;
+	walk(dir, async function (err, results) {
+		if (err) throw err;
 
 		document.getElementById("step2").innerHTML = "<span class='text-medium'>Step 2/3:</span> Calculating file hashes [0%]";
 		document.getElementById("panel-progress").style.height = "auto";
 		document.getElementById("panel-folder").style.height = `${document.getElementById("panel-progress").offsetHeight}px`
 		stats = 0;
-  	results.remove(undefined);
-  	
-  	for (const file of results) {
-  		const hash = await fileHash(file);
+		results.remove(undefined);
+
+		for (const file of results) {
+			const hash = await fileHash(file);
 			if (hash !== "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855") {
 				if (!hashes[hash]) hashes[hash] = [];
 				hashes[hash].push(file);
 			};
 			document.getElementById("step2").innerHTML = `<span class='text-medium'>Step 2/3:</span> Calculating file hashes [${Math.round(++stats / results.length * 10000) / 100}%]`;
-  	}
+		}
 
-  	document.getElementById("step3").innerHTML = "<span class='text-medium'>Step 3/3:</span> Checking for duplicates";
+		document.getElementById("step3").innerHTML = "<span class='text-medium'>Step 3/3:</span> Checking for duplicates";
 		document.getElementById("panel-folder").style.height = `${document.getElementById("panel-progress").offsetHeight}px`;
 
 		let res = [];
 		for (const files of Object.values(hashes)) {
 			if (files.length > 1) {
 				let push = [];
-        for (const file of files) {
-          push.push(`<div id="${file}" class="text-secondary"><span class="mif-bin mif-lg fg-red hover-pointer" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></span> ${file}</div>`);
-        }
+				for (const file of files) {
+					push.push(`<div id="${file}" class="text-secondary"><span class="mif-bin mif-lg fg-red hover-pointer" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></span> ${file}</div>`);
+				}
 
 				await setTimeout(() => {
 					res.push(`<p>${push.join("")}</p>`);
@@ -75,58 +70,58 @@ function scan() {
 				}, 100);
 			}
 		}
-    document.getElementById("button-scan").setAttribute("onClick", "scan()");
+		document.getElementById("button-scan").setAttribute("onClick", "scan()");
 	});
 }
 
 
 // Define helper functions
 function walk(dir, done) {
-  let results = []
-  fs.readdir(dir, (err, list) => {
-    if (err) return done(err);
-    let pending = list.length;
-    if (!pending) return done(null, results);
-    list.forEach(file => {
-      file = path.resolve(dir, file);
-      fs.stat(file, (err, stat) => {
-        if (stat && stat.isDirectory()) {
-          walk(file, (err, res) => {
-            results = results.concat(res);
-            if (!--pending) done(null, results);
-          });
-        } else {
-          results.push(file);
-          document.getElementById("step1").innerHTML = `<br><span class='text-medium'>Step 1/3:</span> Building file list [${(++stats).toLocaleString()} files found]`
-          if (!--pending) done(null, results);
-        }
-      });
-    });
-  });
+	let results = []
+	fs.readdir(dir, (err, list) => {
+		if (err) return done(err);
+		let pending = list.length;
+		if (!pending) return done(null, results);
+		list.forEach(file => {
+			file = path.resolve(dir, file);
+			fs.stat(file, (err, stat) => {
+				if (stat && stat.isDirectory()) {
+					walk(file, (err, res) => {
+						results = results.concat(res);
+						if (!--pending) done(null, results);
+					});
+				} else {
+					results.push(file);
+					document.getElementById("step1").innerHTML = `<br><span class='text-medium'>Step 1/3:</span> Building file list [${(++stats).toLocaleString()} files found]`
+					if (!--pending) done(null, results);
+				}
+			});
+		});
+	});
 };
 
 function fileHash(filename, algorithm = "sha256") {
-  return new Promise((resolve, reject) => {
-    let shasum = require("crypto").createHash(algorithm);
-    try {
-      let s = fs.ReadStream(filename)
-      s.on('data', function (data) {
-        shasum.update(data)
-      })
-      // making digest
-      s.on('end', function () {
-        const hash = shasum.digest('hex')
-        return resolve(hash);
-      })
-      s.on("error", () => {})
-    } catch (error) {
-    }
-  });
+	return new Promise((resolve, reject) => {
+		let shasum = require("crypto").createHash(algorithm);
+		try {
+			let s = fs.ReadStream(filename)
+			s.on('data', function (data) {
+				shasum.update(data)
+			})
+			// making digest
+			s.on('end', function () {
+				const hash = shasum.digest('hex')
+				return resolve(hash);
+			})
+			s.on("error", () => { })
+		} catch (error) {
+		}
+	});
 }
 
 function deleteFile(file) {
-  fs.unlink(file, err => {
-    if (err) return Metro.toast.create("Missing permission to delete this file");
-    document.getElementById(file).style.display = "none";
-  })
+	fs.unlink(file, err => {
+		if (err) return Metro.toast.create("Missing permission to delete this file");
+		document.getElementById(file).style.display = "none";
+	})
 }
