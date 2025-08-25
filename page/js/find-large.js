@@ -19,14 +19,14 @@ document.getElementById("search-dir").value = require("path").join(process.env.U
 
 
 // Define onClick functions
-function getDir() {
+function getDirLarge() {
 	const { dialog } = require('electron').remote;
 	dialog.showOpenDialog({
 		properties: ['openDirectory']
 	}).then(dir => document.getElementById("search-dir").value = dir.filePaths[0]);
 }
 
-function scan() {
+function scanLarge() {
 	document.getElementById("button-scan").setAttribute("onClick", "Metro.toast.create('There is already a scan in progress')");
 	stats = 0;
 	const dir = document.getElementById("search-dir").value,
@@ -36,7 +36,7 @@ function scan() {
 	document.getElementById("status").innerHTML = `<span class="text-medium">Scanning . . .</span>`;
 	document.getElementById("step1").innerHTML = "<br><span class='text-medium'>Step 1/2:</span> Building file list [0 files found]";
 
-	walk(dir, async function (err, results) {
+	walkLarge(dir, async function (err, results) {
 		if (err) throw err;
 
 		document.getElementById("step2").innerHTML = "<span class='text-medium'>Step 2/2:</span> Checking for large files";
@@ -45,7 +45,7 @@ function scan() {
 
 		let res = [];
 		for (const file of results) {
-			if (fs.statSync(file).size >= size) res.push(`<div id="${file}" class="text-secondary"><span class="mif-bin mif-lg fg-red hover-pointer" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></span> ${file}</div>`);
+			if (fs.statSync(file).size >= size) res.push(`<div id="${file}" class="text-secondary"><span class="mif-bin mif-lg fg-red hover-pointer" onClick="deleteFileLarge('${file.replace(/\\/g, "\\\\")}')"></span> ${file}</div>`);
 			await setTimeout(() => {
 				document.getElementById("results").innerHTML = res.join("");
 			}, 100);
@@ -56,7 +56,7 @@ function scan() {
 
 
 // Define helper functions
-function walk(dir, done) {
+function walkLarge(dir, done) {
 	let results = []
 	fs.readdir(dir, (err, list) => {
 		if (err) return done(err);
@@ -66,7 +66,7 @@ function walk(dir, done) {
 			file = path.resolve(dir, file);
 			fs.stat(file, (err, stat) => {
 				if (stat && stat.isDirectory()) {
-					walk(file, (err, res) => {
+					walkLarge(file, (err, res) => {
 						results = results.concat(res);
 						if (!--pending) done(null, results);
 					});
@@ -80,7 +80,7 @@ function walk(dir, done) {
 	});
 };
 
-function deleteFile(file) {
+function deleteFileLarge(file) {
 	console.log(file);
 	fs.unlink(file, err => {
 		if (err) return console.log(err);// Metro.toast.create("Missing permission to delete this file");
