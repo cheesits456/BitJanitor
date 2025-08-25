@@ -1,27 +1,26 @@
-const { app, BrowserWindow, ipcMain } = require("electron"),
-	path = require("path");
+const path = require("path");
+
+const electron = require("electron");
 
 function createWindow() {
-	// Create the browser window.
-	const win = new BrowserWindow({
-		width: 1065,
-		height: 800,
-		minWidth: 1065,
-		minHeight: 800,
+	const win = new electron.BrowserWindow({
+		width: 1150,
+		height: 600,
+		minWidth: 1150,
+		minHeight: 600,
 		webPreferences: {
 			nodeIntegration: true,
 			contextIsolation: false
 		}
 	})
 
-	// and load the index.html of the app.
-	win.setMenu(null);
+	// win.setMenu(null);
 	win.maximize();
 	win.loadFile(path.join("page", "index.html"));
 
-	win.webContents.on('new-window', function (e, url) {
+	win.webContents.on('new-window', (e, url) => {
 		e.preventDefault();
-		require('electron').shell.openExternal(url);
+		electron.shell.openExternal(url);
 	});
 
 }
@@ -29,4 +28,4 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow);
+electron.app.whenReady().then(createWindow);
