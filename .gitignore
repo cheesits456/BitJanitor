@@ -105,3 +105,6 @@ dist
 
 # compiled program
 BitJanitor-win32-x64/
+
+# boilerplate
+render/
