@@ -29,10 +29,29 @@
             <li>
                 <a href="#dashboard">
                     <span class="icon"><span class="mif-meter"></span></span>
-                    <span class="caption">Dashboard</span>
+                    <span id="test" class="caption">Dashboard</span>
+                </a>
+            </li>
+            <hr style="margin: 1em; background-color: #1ba1e2">
+            <li>
+                <a href="#find-temp">
+                    <span class="icon"><span class="mif-file-empty"></span></span>
+                    <span class="caption">Clean Temporary Files</span>
                 </a>
             </li>
             <li>
+                <a href="#find-duplicates">
+                    <span class="icon"><span class="mif-files-empty"></span></span>
+                    <span class="caption">Clean Duplicate Files</span>
+                </a>
+            </li>
+            <li>
+                <a href="#find-large">
+                    <span class="icon"><span class="mif-description"></span></span>
+                    <span class="caption">Clean Large Files</span>
+                </a>
+            </li>
+            <li style="position: absolute; bottom: 0; width: 100%">
                 <a href="#credits">
                     <span class="icon"><span class="mif-list"></span></span>
                     <span class="caption">Credits</span>
@@ -360,7 +379,7 @@
             <a href="#" class="app-bar-item d-block d-none-lg" id="paneToggle"><span class="mif-menu"></span></a>
 
             <div class="app-bar-container ml-auto">
-                <a href="#" class="app-bar-item">Upgrade</a>
+                <a href="#" class="app-bar-item" onclick="Metro.toast.create('Upgrade not available yet')">Upgrade</a>
             </div>
         </div>
 

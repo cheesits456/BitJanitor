@@ -108,4 +108,3 @@ $(function(){
         table.prepend(tr);
     }
 });
-
