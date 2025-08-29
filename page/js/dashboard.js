@@ -20,7 +20,7 @@ async function updateStats() {
 	document.getElementById("stat-storage").innerHTML = `${drive.totalGb} GB`;
 	document.getElementById("stat-user").innerHTML = require("os").userInfo().username;
 
-	document.getElementById("usage-ram").innerHTML = `${100 - memUsage.freeMemPercentage}%`;
+	document.getElementById("usage-ram").innerHTML = `${Math.round((100 - memUsage.freeMemPercentage) * 100) / 100}%`;
 	document.getElementById("usage-cpu").innerHTML = `${cpuUsage}%`;
 	document.getElementById("usage-storage").innerHTML = `${diskUsage.usedPercentage}%`;
 	document.getElementById("usage-users").innerHTML = timeConvert(os.uptime());
