@@ -31,9 +31,7 @@ function getDirLarge() {
 function scanLarge() {
 	document.getElementById("button-scan").setAttribute("onClick", "Metro.toast.create('There is already a scan in progress')");
 	stats = 0;
-	const dir = document.getElementById("search-dir").value,
-		algorithm = "sha256";
-	let hashes = {};
+	const dir = document.getElementById("search-dir").value;
 
 	document.getElementById("status").innerHTML = `<span class="text-medium">Scanning . . .</span>`;
 	document.getElementById("step1").innerHTML = "<br><span class='text-medium'>Step 1/2:</span> Building file list [0 files found]";
@@ -52,7 +50,7 @@ function scanLarge() {
 				document.getElementById("results").innerHTML = res.join("");
 			}, 100);
 		}
-		document.getElementById("button-scan").setAttribute("onClick", "scan()");
+		document.getElementById("button-scan").setAttribute("onClick", "scanLarge()");
 	});
 }
 
