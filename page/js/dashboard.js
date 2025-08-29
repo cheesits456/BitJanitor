@@ -26,14 +26,18 @@ async function updateStats() {
 	document.getElementById("usage-users").innerHTML = timeConvert(os.uptime());
 }
 
-function timeConvert(seconds) {
-	if (seconds > 60 * 60 * 24) {
-		let days = Math.floor(seconds / 60 / 60 / 24);
-		let hours = Math.floor((seconds - (days * 60 * 60 * 24)) / 60 / 60);
+function timeConvert(input) {
+	if (input > 60 * 60 * 24) {
+		let days = Math.floor(input / 60 / 60 / 24);
+		let hours = Math.floor((input - (days * 60 * 60 * 24)) / 60 / 60);
 		return `${days}d ${hours}h`;
-	} else {
-		let hours = Math.floor(seconds / 60 / 60);
-		let minutes = Math.floor((seconds - (hours * 60 * 60)) / 60);
+	} else if (input > 60 * 60) {
+		let hours = Math.floor(input / 60 / 60);
+		let minutes = Math.floor((input - (hours * 60 * 60)) / 60);
 		return `${hours}h ${minutes}m`;
+	} else {
+		let minutes = Math.floor(input / 60);
+		let seconds = Math.floor(input - (minutes * 60));
+		return `${minutes}m ${seconds}s`;
 	}
 }
