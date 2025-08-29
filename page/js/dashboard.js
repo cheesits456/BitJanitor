@@ -4,7 +4,7 @@ const osu = require("node-os-utils");
 const systeminformation = require("systeminformation");
 
 updateStats();
-setInterval(updateStats, 3000)
+setInterval(updateStats, 1000)
 
 async function updateStats() {
 	// Get stats
