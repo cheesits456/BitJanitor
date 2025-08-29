@@ -5,17 +5,19 @@ Array.prototype.remove = function (a) {
 
 
 // Require mandatory packages
-fs = require("fs");
-path = require("path");
-stats = 0;
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
+let stats = 0;
 
 
-// Set panel height
-document.getElementById("panel-progress").style.height = `${document.getElementById("panel-folder").offsetHeight}px`
-
+// Set height
+function height() {
+document.getElementById("panel-progress-large").style.paddingBottom = `${document.getElementById("panel-folder-large").height}px`;
+}
 
 // Set defualt search directory
-document.getElementById("search-dir").value = require("path").join(process.env.USERPROFILE, "Documents");
+document.getElementById("search-dir").value = os.homedir();
 
 
 // Define onClick functions
