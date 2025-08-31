@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BitJanitor</title>
+
+	<link href="./vendors/bootstrap/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+	<link href="./vendors/metro/metro-icons.css" rel="stylesheet" crossorigin="anonymous">
+	<link href="./style.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+
+<body data-bs-theme="dark" class="bg-white">
+	<!-- Navbar -->
+	<!--Main Navigation-->
+	<header>
+		<!-- Sidebar -->
+		<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark">
+			<div class="position-sticky">
+				<div class="list-group list-group-flush mx-3 mt-4">
+					<a href="./index.html" class="list-group-item list-group-item-action py-2 ripple text-white">
+						<i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+					</a>
+					<br>
+					<a href="./clean-large/index.html" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>Clean Large Files</span>
+					</a>
+					<a href="./clean-duplicates/index.html" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-lock fa-fw me-3"></i><span>Clean Duplicate Files</span>
+					</a>
+				</div>
+			</div>
+			<div class="navbar-footer">
+				<hr class="footer-hr">
+				Made with NodeJS<br>
+				by cheesits456
+			</div>
+		</nav>
+		<!-- Navbar -->
+		<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+			<!-- Container wrapper -->
+			<div class="container-fluid">
+				<!-- Toggle button -->
+				<button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+					aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="fas fa-bars"></i>
+				</button>
+
+				<!-- Brand -->
+				<h1 class="navbar-brand" href="#">BitJanitor</h1>
+				<p id="version" class="version">Loading. . .</p>
+			</div>
+		</nav>
+	</header>
+
+	<!--Main layout-->
+	<main style="margin-top: 58px">
+		<div class="container pt-4">
+
+		</div>
+	</main>
+
+	<script src="./vendors/bootstrap/bootstrap.bundle.js" crossorigin="anonymous"></script>
+	<script src="./script.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
