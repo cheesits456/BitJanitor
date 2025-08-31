@@ -8,13 +8,16 @@ Array.prototype.remove = function (a) {
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
-let stats = 0;
+
+const electron = require("electron");
+
+stats = 0;
 
 
 // Set height
-function height() {
-document.getElementById("panel-progress-large").style.paddingBottom = `${document.getElementById("panel-folder-large").height}px`;
-}
+// function height() {
+// document.getElementById("panel-progress-large").style.paddingBottom = `${document.getElementById("panel-folder-large").height}px`;
+// }
 
 // Set defualt search directory
 document.getElementById("search-dir").value = os.homedir();
@@ -22,8 +25,7 @@ document.getElementById("search-dir").value = os.homedir();
 
 // Define onClick functions
 function getDirLarge() {
-	const { dialog } = require('electron').remote;
-	dialog.showOpenDialog({
+	electron.remote.dialog.showOpenDialog({
 		properties: ['openDirectory']
 	}).then(dir => document.getElementById("search-dir").value = dir.filePaths[0]);
 }
