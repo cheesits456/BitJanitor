@@ -3,6 +3,15 @@ const path = require("path");
 const electron = require("electron");
 
 function createWindow() {
+
+	const handleRedirect = (e, url) => {
+		console.log(url);
+		if (url.startsWith("http")) {
+			e.preventDefault()
+			electron.shell.openExternal(url)
+		}
+	}
+
 	const win = new electron.BrowserWindow({
 		width: 1150,
 		height: 600,
@@ -14,15 +23,11 @@ function createWindow() {
 		}
 	})
 
-	// win.setMenu(null);
+	win.setMenu(null);
 	win.maximize();
 	win.loadFile(path.join("page", "index.html"));
 
-	// win.webContents.on('new-window', (e, url) => {
-	// 	e.preventDefault();
-	// 	electron.shell.openExternal(url);
-	// });
-
+	win.webContents.on('will-navigate', handleRedirect)
 }
 
 electron.app.whenReady().then(createWindow);
