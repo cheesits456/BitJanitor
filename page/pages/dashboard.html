@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>BitJanitor - Dashboard</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- MetisMenu CSS -->
+	<link href="../css/metisMenu.min.css" rel="stylesheet">
+
+	<!-- Timeline CSS -->
+	<link href="../css/timeline.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="../css/startmin.css" rel="stylesheet">
+
+	<!-- Morris Charts CSS -->
+	<link href="../css/morris.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<!-- Custom CSS -->
+	<link href="../css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<span class="navbar-brand default-cursor" href="index.html">BitJanitor</span>
+			</div>
+
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<ul class="nav navbar-right navbar-top-links">
+				<li class="dropdown">
+					<a id="version" class="dropdown-toggle version default-cursor">
+						<i class="fa fa-code fa-fw"></i> Loading. . .
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<aside class="sidebar navbar-default" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					<li>
+						<a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+					</li>
+					<br>
+					<li class="border-top">
+						<a href="clean-large.html"><i class="fa fa-file fa-fw"></i> Clean Large Files</a>
+					</li>
+					<li>
+						<a href="clean-duplicate.html"><i class="fa fa-files-o fa-fw"></i> Clean Duplicate Files</a>
+					</li>
+					<br>
+					<li class="border-top">
+						<a href="credits.html"><i class="fa fa-list fa-fw"></i> Credits</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+
+		<!-- Main content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header default-cursor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-md-6">
+						<div class="panel panel-primary default-cursor">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-bar-chart fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div id="stat-ram" class="huge default-cursor">Loading. . .</div>
+										<div class="small">Memory</div>
+									</div>
+								</div>
+							</div>
+							<a>
+								<div class="panel-footer">
+									<span class="pull-left">Usage:</span>
+									<span id="usage-ram" class="pull-right">Loading. . .</span>
+									<div class="clearfix"></div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<div class="panel panel-red default-cursor">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-server fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div id="stat-cpu" class="medium">Loading. . .</div>
+										<div class="small">CPU</div>
+									</div>
+								</div>
+							</div>
+							<a>
+								<div class="panel-footer">
+									<span class="pull-left">Usage</span>
+									<span id="usage-cpu" class="pull-right">Loading. . .</span>
+									<div class="clearfix"></div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<div class="panel panel-green default-cursor">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-hdd-o fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div id="stat-storage" class="huge">Loading. . .</div>
+										<div class="small">Storage</div>
+									</div>
+								</div>
+							</div>
+							<a>
+								<div class="panel-footer">
+									<span class="pull-left">Usage:</span>
+									<span id="usage-storage" class="pull-right">Loading. . .</span>
+									<div class="clearfix"></div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<div class="panel panel-yellow default-cursor">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-user fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div id="stat-user" class="huge">Loading. . .</div>
+										<div class="small">User</div>
+									</div>
+								</div>
+							</div>
+							<a>
+								<div class="panel-footer">
+									<span class="pull-left">Uptime:</span>
+									<span id="usage-user" class="pull-right">Loading. . .</span>
+
+									<div class="clearfix"></div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="../js/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="../js/metisMenu.min.js"></script>
+
+	<!-- Morris Charts JavaScript -->
+	<script src="../js/raphael.min.js"></script>
+	<script src="../js/morris.min.js"></script>
+	<script src="../js/morris-data.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="../js/startmin.js"></script>
+
+	<!-- Custom JavaScript -->
+	<script src="../js/dashboard.js"></script>
+</body>
+
+</html>

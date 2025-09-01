@@ -1,0 +1,54 @@
+.navbar {
+	background-color: #1ba1e2;
+}
+
+.navbar-brand {
+	color: white !important;
+	font-size: 24pt;
+}
+
+#side-menu {
+	padding-top: 4px;
+}
+
+a {
+	font-size: 13pt;
+}
+
+.border-top {
+	border-top: 1px solid #e7e7e7;
+}
+
+.version {
+	color: #eee !important;
+}
+
+.version:hover {
+	background-color: #0d7bb3 !important;
+	color: white !important;
+}
+
+.default-cursor:hover {
+	cursor: default;
+}
+
+.panel-footer {
+	font-size: 24pt;
+}
+
+.medium {
+	font-size: 20pt;
+}
+
+#stat-cpu {
+	padding-top: 5px;
+	padding-bottom: 15px;
+}
+
+.small {
+	font-size: 16pt;
+}
+
+table {
+	font-size: 13pt;
+}
