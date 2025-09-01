@@ -11,11 +11,16 @@ const package = require(path.join("..", "..", "package.json"));
 document.getElementById("version").innerHTML = `<i class="fa fa-code fa-fw"></i> ${buildData.type}${package.version} build ${buildData.build}`;
 
 // Set height
-document.getElementById("page-wrapper").style.height = `${Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)}px`;
+updateSize();
+window.addEventListener("resize", updateSize);
 
+// Update stats
 updateStats();
 setInterval(updateStats, 1000);
 
+function updateSize() {
+	document.getElementById("page-wrapper").style.height = `${Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)}px`;
+}
 
 async function updateStats() {
 	// Get stats
@@ -24,7 +29,7 @@ async function updateStats() {
 	let memUsage = await osu.mem.info();
 	let cpuUsage = await osu.cpu.usage();
 	let diskUsage = await osu.drive.info();
-
+	
 	// Set stats
 	document.getElementById("stat-ram").innerHTML = `${Math.round(os.totalmem() / 1024 / 1024 / 1024 * 100) / 100} GB`;
 	document.getElementById("stat-cpu").innerHTML = `${cpu.cores} cores @ ${cpu.speedmax} GHz<br>`;
