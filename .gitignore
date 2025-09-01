@@ -107,7 +107,7 @@ dist
 BitJanitor-win32-x64/
 
 # boilerplate
-render/
+render/*
 page_old/
 
 #icons
