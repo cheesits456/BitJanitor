@@ -5,7 +5,6 @@ const electron = require("electron");
 function createWindow() {
 
 	const handleRedirect = (e, url) => {
-		console.log(url);
 		if (url.startsWith("http")) {
 			e.preventDefault()
 			electron.shell.openExternal(url)
