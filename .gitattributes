@@ -1,2 +1,25 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Exclude CSS libs from liguist data
+page/css/dataTables/* linguist-vendored=false
+page/css/bootstrap-social.css linguist-vendored=false
+page/css/bootstrap-theme.min.css linguist-vendored=false
+page/css/bootstrap.min.css linguist-vendored=false
+page/css/font-awesome.min.css linguist-vendored=false
+page/css/metisMenu.min.css linguist-vendored=false
+page/css/morris.css linguist-vendored=false
+page/css/startmin.css linguist-vendored=false
+page/css/timeline.css linguist-vendored=false
+
+# Exclude JS libs from linguist data
+page/js/dataTables/* linguist-vendored=false
+page/js/flot/* linguist-vendored=false
+page/js/bootstrap.min.js linguist-vendored=false
+page/js/flot-data.js linguist-vendored=false
+page/js/jquery.min.js linguist-vendored=false
+page/js/metisMenu.min.js linguist-vendored=false
+page/js/morris-data.js linguist-vendored=false
+page/js/morris.min.js linguist-vendored=false
+page/js/raphael.min.js linguist-vendored=false
+page/js/startmin.js linguist-vendored=false
