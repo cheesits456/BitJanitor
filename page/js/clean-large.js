@@ -74,7 +74,7 @@ function scan() {
 				document.getElementById("results").innerHTML = `
 					<div class="table-responsive">
 						<table class="table table-striped">
-							<thead style="font-weight:bold">
+							<thead class="default-cursor" style="font-weight:bold">
 								<tr>
 									<td>File path</td>
 									<td>Size</td>
