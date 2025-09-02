@@ -24,7 +24,6 @@ updateSize();
 window.addEventListener("resize", updateSize);
 
 function updateSize() {
-	document.getElementById("page-wrapper").style.height = `${Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)}px`;
 	document.getElementById("sidebar").style.height = `${Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) - 51}px`;
 	document.getElementById("progress").style.height = `${document.getElementById("configuration").offsetHeight}px`;
 }
