@@ -122,7 +122,7 @@ function walk(dir, done) {
 function deleteFile(file) {
 	console.log(file);
 	fs.unlink(file, err => {
-		if (err) return console.log(err);// Metro.toast.create("Missing permission to delete this file");
+		if (err) return alert(err);// Metro.toast.create("Missing permission to delete this file");
 		document.getElementById(file).remove();
 	})
 }
