@@ -20,6 +20,7 @@ setInterval(updateStats, 1000);
 
 function updateSize() {
 	document.getElementById("page-wrapper").style.height = `${Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)}px`;
+	document.getElementById("sidebar").style.height = `${Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) - 51}px`;
 }
 
 async function updateStats() {

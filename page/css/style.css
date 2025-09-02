@@ -2,21 +2,49 @@
 	background-color: #1ba1e2;
 }
 
+aside {
+	background-color: #222d32 !important;
+}
+
+ul hr {
+	margin: 10px;
+	border-top: 1px solid black;
+}
+
 .navbar-brand {
 	color: white !important;
 	font-size: 24pt;
 }
 
 #side-menu {
-	padding-top: 4px;
+	padding-top: 15px;
 }
 
 a {
 	font-size: 13pt;
 }
 
+a.active {
+	background-color: #4e5f66 !important;
+	color: #ddd;
+}
+
+li a {
+	color: #1ba1e2;
+}
+
+li a:hover {
+	color: #1783b9;
+	background-color: #333f44 !important;
+}
+
+.sidebar ul li {
+	/* border-bottom: 1px solid black !important; */
+	border: none;
+}
+
 .border-top {
-	border-top: 1px solid #e7e7e7;
+	border-top: 1px solid black;
 }
 
 .version {
