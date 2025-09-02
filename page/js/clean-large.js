@@ -50,6 +50,7 @@ function scan() {
 
 	document.getElementById("status").innerHTML = `<span class="text-medium">Scanning . . .</span>`;
 	document.getElementById("step1").innerHTML = "<br><span class='text-medium'>Step 1/2:</span> Building file list [0 files found]";
+	document.getElementById("step2").innerHTML = "";
 
 	walk(dir, async function (err, results) {
 		if (err) throw err;
@@ -62,6 +63,7 @@ function scan() {
 		for (const file of results) {
 			if (fs.statSync(file).size >= size) res.push(`<p id="${file}" width="100%"><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</p>`);
 			await setTimeout(() => {
+				document.getElementById("step2").innerHTML = `<span class='text-medium'>Step 2/2:</span> Checking for large files [${res.length.toLocaleString()} files found]`;
 				document.getElementById("results").innerHTML = res.join("");
 				document.getElementById("button-scan").setAttribute("onClick", "scan()");
 				updateSize();
@@ -89,7 +91,7 @@ function walk(dir, done) {
 					});
 				} else {
 					results.push(file);
-					document.getElementById("step1").innerHTML = `<br><span class='text-medium'>Step 1/3:</span> Building file list [${(++stats).toLocaleString()} files found]`
+					document.getElementById("step1").innerHTML = `<br><span class='text-medium'>Step 1/2:</span> Building file list [${(++stats).toLocaleString()} files found]`
 					if (!--pending) done(null, results);
 				}
 			});
