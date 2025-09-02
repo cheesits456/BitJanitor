@@ -57,17 +57,37 @@ function scan() {
 
 		document.getElementById("step2").innerHTML = "<span class='text-medium'>Step 2/2:</span> Checking for large files";
 		results.remove(undefined);
-		let size = parseInt(document.getElementById("search-size").value) * (document.getElementById("search-unit").value === "MB" ? 1000000 : 1000000000);
+		const sizeUnit = document.getElementById("search-unit").value;
+		const size = parseInt(document.getElementById("search-size").value) * (sizeUnit === "MB" ? 1000000 : 1000000000);
 
 		let res = [];
 		for (const file of results) {
-			if (fs.statSync(file).size >= size) res.push(`<p id="${file}" width="100%"><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</p>`);
+			const fileSize = fs.statSync(file).size;
+			if (fileSize >= size) res.push(`
+				<tr id="${file}">
+					<td><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</td>
+					<td>${(Math.round((fileSize / (sizeUnit === "MB" ? 1000000 : 1000000000)) * 100) / 100).toLocaleString()} ${sizeUnit}</td>
+				</tr>
+			`);
 			await setTimeout(() => {
 				document.getElementById("step2").innerHTML = `<span class='text-medium'>Step 2/2:</span> Checking for large files [${res.length.toLocaleString()} files found]`;
-				document.getElementById("results").innerHTML = res.join("");
+				document.getElementById("results").innerHTML = `
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead style="font-weight:bold">
+								<tr>
+									<td>File path</td>
+									<td>Size</td>
+								</tr>
+							</thead>
+							<tbody id="results">
+								${res.join("")}
+							</tbody>
+						</table>
+					</div>
+				`;
 				document.getElementById("button-scan").setAttribute("onClick", "scan()");
-				updateSize();
-			}, 100);
+			}, 1000);
 		}
 		document.getElementById("button-scan").setAttribute("onClick", "scanLarge()");
 	});
@@ -103,6 +123,6 @@ function deleteFile(file) {
 	console.log(file);
 	fs.unlink(file, err => {
 		if (err) return console.log(err);// Metro.toast.create("Missing permission to delete this file");
-		document.getElementById(file).style.display = "none";
+		document.getElementById(file).remove();
 	})
 }
