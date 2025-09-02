@@ -1,6 +1,9 @@
 const path = require("path");
 
 const electron = require("electron");
+const remoteMain = require('@electron/remote/main');
+
+remoteMain.initialize();
 
 function createWindow() {
 
@@ -17,8 +20,9 @@ function createWindow() {
 		minWidth: 1150,
 		minHeight: 600,
 		webPreferences: {
-			nodeIntegration: true,
-			contextIsolation: false
+			contextIsolation: false,
+			enableRemoteModule: true,
+			nodeIntegration: true
 		}
 	})
 
@@ -26,7 +30,9 @@ function createWindow() {
 	win.maximize();
 	win.loadFile(path.join("page", "index.html"));
 
-	win.webContents.on('will-navigate', handleRedirect)
+	win.webContents.on('will-navigate', handleRedirect);
+
+	remoteMain.enable(win.webContents);
 }
 
 electron.app.whenReady().then(createWindow);
