@@ -102,7 +102,8 @@
 										<div class="col-md-2">
 											<div class="form-group">
 												<label>&#x200b;</label><br>
-												<div id="browse-button" class="btn btn-defuault">Browse</div>
+												<div id="browse-button" class="btn btn-defuault" onclick="getDir()">
+													Browse</div>
 											</div>
 										</div>
 									</div>
@@ -110,13 +111,13 @@
 										<div class="col-md-8">
 											<div class="form-group">
 												<label>Files above:</label>
-												<input class="form-control" type="number" value="500">
+												<input id="search-size" class="form-control" type="number" value="500">
 											</div>
 										</div>
 										<div class="col-md-2">
 											<div class="form-group">
 												<label>&#x200b;</label>
-												<select class="form-control">
+												<select id="search-unit" class="form-control">
 													<option>MB</option>
 													<option>GB</option>
 												</select>
@@ -125,7 +126,8 @@
 										<div class="col-md-2">
 											<div class="form-group">
 												<label>&#x200b;</label><br>
-												<div class="btn btn-defuault btn-primary">Scan</div>
+												<div id="button-scan" class="btn btn-defuault btn-primary"
+													onclick="scan()">Scan</div>
 											</div>
 										</div>
 									</div>
@@ -137,16 +139,18 @@
 						<div id="progress" class="panel panel-default">
 							<div class="panel-heading size-13">Progress</div>
 							<div class="panel-body">
-
+								<div id="status">No scan currently in progress</div>
+								<div><span id="step1"></span></div>
+								<div><span id="step2"></span></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" height="100%">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading size-13">Results</div>
-							<div class="panel-body">
+							<div id="results" class="panel-body">
 
 							</div>
 						</div>

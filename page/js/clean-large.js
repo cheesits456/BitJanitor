@@ -34,25 +34,25 @@ document.getElementById("search-dir").value = os.homedir();
 
 
 // Define onClick functions
-document.getElementById("browse-button").addEventListener("click", getDir);
-
 function getDir() {
 	dialog.showOpenDialog({
-		properties: ["openDirectory"]
+		buttonLabel: "Select",
+		properties: ["openDirectory"],
+		title: "Select Folder"
 	}).then(dir => {
 		if (dir.filePaths[0]) document.getElementById("search-dir").value = dir.filePaths[0];
 	});
 }
 
-function scanLarge() {
-	document.getElementById("button-scan").setAttribute("onClick", "Metro.toast.create('There is already a scan in progress')");
+function scan() {
+	document.getElementById("button-scan").setAttribute("onClick", "alert('There is already a scan in progress')");
 	stats = 0;
 	const dir = document.getElementById("search-dir").value;
 
 	document.getElementById("status").innerHTML = `<span class="text-medium">Scanning . . .</span>`;
 	document.getElementById("step1").innerHTML = "<br><span class='text-medium'>Step 1/2:</span> Building file list [0 files found]";
 
-	walkLarge(dir, async function (err, results) {
+	walk(dir, async function (err, results) {
 		if (err) throw err;
 
 		document.getElementById("step2").innerHTML = "<span class='text-medium'>Step 2/2:</span> Checking for large files";
@@ -61,9 +61,11 @@ function scanLarge() {
 
 		let res = [];
 		for (const file of results) {
-			if (fs.statSync(file).size >= size) res.push(`<div id="${file}" class="text-secondary"><span class="mif-bin mif-lg fg-red hover-pointer" onClick="deleteFileLarge('${file.replace(/\\/g, "\\\\")}')"></span> ${file}</div>`);
+			if (fs.statSync(file).size >= size) res.push(`<p id="${file}" width="100%"><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</p>`);
 			await setTimeout(() => {
 				document.getElementById("results").innerHTML = res.join("");
+				document.getElementById("button-scan").setAttribute("onClick", "scan()");
+				updateSize();
 			}, 100);
 		}
 		document.getElementById("button-scan").setAttribute("onClick", "scanLarge()");
@@ -72,7 +74,7 @@ function scanLarge() {
 
 
 // Define helper functions
-function walkLarge(dir, done) {
+function walk(dir, done) {
 	let results = []
 	fs.readdir(dir, (err, list) => {
 		if (err) return done(err);
@@ -82,7 +84,7 @@ function walkLarge(dir, done) {
 			file = path.resolve(dir, file);
 			fs.stat(file, (err, stat) => {
 				if (stat && stat.isDirectory()) {
-					walkLarge(file, (err, res) => {
+					walk(file, (err, res) => {
 						results = results.concat(res);
 						if (!--pending) done(null, results);
 					});
@@ -96,7 +98,7 @@ function walkLarge(dir, done) {
 	});
 };
 
-function deleteFileLarge(file) {
+function deleteFile(file) {
 	console.log(file);
 	fs.unlink(file, err => {
 		if (err) return console.log(err);// Metro.toast.create("Missing permission to delete this file");
