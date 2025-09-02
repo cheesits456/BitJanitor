@@ -6,6 +6,10 @@ body {
 	background-color: #1ba1e2;
 }
 
+.navbar-inverse {
+	border-color: #777 !important;
+}
+
 aside {
 	background-color: #222d32 !important;
 	position: fixed !important;
