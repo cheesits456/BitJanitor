@@ -44,7 +44,7 @@ function getDir() {
 }
 
 function scan() {
-	document.getElementById("button-scan").setAttribute("onClick", "Metro.toast.create('There is already a scan in progress')");
+	document.getElementById("button-scan").setAttribute("onClick", "alert('There is already a scan in progress')");
 	stats = 0;
 	const dir = document.getElementById("search-dir").value;
 	let hashes = {};
@@ -112,7 +112,6 @@ function scan() {
 		document.getElementById("button-scan").setAttribute("onClick", "scan()");
 	});
 }
-
 
 // Define helper functions
 function walk(dir, done) {
