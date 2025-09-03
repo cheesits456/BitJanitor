@@ -65,10 +65,9 @@ function scan() {
 
 		for (const file of results) {
 			const hash = await fileHash(file);
-			if (hash !== "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855") {
-				if (!hashes[hash]) hashes[hash] = [];
-				hashes[hash].push(file);
-			};
+			if (hash === "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855") continue;
+			if (!hashes[hash]) hashes[hash] = [];
+			hashes[hash].push(file);
 			document.getElementById("step2").innerHTML = `<span class='text-medium'>Step 2/3:</span> Calculating file hashes [${Math.round(++stats / results.length * 10000) / 100}%]`;
 		}
 
@@ -77,37 +76,36 @@ function scan() {
 
 		let res = [];
 		for (const files of Object.values(hashes)) {
-			if (files.length > 1) {
-				let push = [];
-				for (const file of files) {
-					const fileSize = fs.statSync(file).size;
-					push.push(`
-						<tr id="${file}">
-							<td><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</td>
-							<td>${(Math.round((fileSize / 1000) * 100) / 100).toLocaleString()} KB</td>
-						</tr>
-					`);
-				}
-
-				await setTimeout(() => {
-					res.push(`<div>${push.join("")}</div>`);
-					document.getElementById("results").innerHTML = `
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead class="default-cursor" style="font-weight:bold">
-									<tr>
-										<td>File path</td>
-										<td>Size</td>
-									</tr>
-								</thead>
-								<tbody id="results">
-									${res.join("")}
-								</tbody>
-							</table>
-						</div>
-					`;
-				}, 100);
+			if (files.length <= 1) continue;
+			let push = [];
+			for (const file of files) {
+				const fileSize = fs.statSync(file).size;
+				push.push(`
+					<tr id="${file}">
+						<td><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</td>
+						<td>${(Math.round((fileSize / 1000) * 100) / 100).toLocaleString()} KB</td>
+					</tr>
+				`);
 			}
+
+			await setTimeout(() => {
+				res.push(`<div>${push.join("")}</div>`);
+				document.getElementById("results").innerHTML = `
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead class="default-cursor" style="font-weight:bold">
+								<tr>
+									<td>File path</td>
+									<td>Size</td>
+								</tr>
+							</thead>
+							<tbody id="results">
+								${res.join("")}
+							</tbody>
+						</table>
+					</div>
+				`;
+			}, 100);
 		}
 		document.getElementById("button-scan").setAttribute("onClick", "scan()");
 	});
