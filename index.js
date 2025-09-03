@@ -26,7 +26,7 @@ function createWindow() {
 		}
 	})
 
-	// win.setMenu(null);
+	win.setMenu(null);
 	win.maximize();
 	win.loadFile(path.join("page", "index.html"));
 
