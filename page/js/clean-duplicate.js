@@ -84,7 +84,7 @@ function scan() {
 					push.push(`
 						<tr id="${file}">
 							<td><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</td>
-							<td>${(Math.round((fileSize / 1000000) * 100) / 100).toLocaleString()} MB</td>
+							<td>${(Math.round((fileSize / 1000) * 100) / 100).toLocaleString()} KB</td>
 						</tr>
 					`);
 				}
