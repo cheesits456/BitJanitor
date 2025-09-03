@@ -9,8 +9,8 @@ function createWindow() {
 
 	const handleRedirect = (e, url) => {
 		if (url.startsWith("http")) {
-			e.preventDefault()
-			electron.shell.openExternal(url)
+			e.preventDefault();
+			electron.shell.openExternal(url);
 		}
 	}
 
