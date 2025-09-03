@@ -8,10 +8,10 @@ remoteMain.initialize();
 function createWindow() {
 
 	const handleRedirect = (e, url) => {
-		if (url.startsWith("http")) {
-			e.preventDefault();
-			electron.shell.openExternal(url);
-		}
+		if (!url.startsWith("http")) return;
+		e.preventDefault();
+		electron.shell.openExternal(url);
+
 	}
 
 	const win = new electron.BrowserWindow({
