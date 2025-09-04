@@ -66,7 +66,7 @@ function scan() {
 			if (fileSize >= size) res.push(`
 				<tr id="${file}">
 					<td><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</td>
-					<td>${(Math.round((fileSize / (sizeUnit === "MB" ? 1000000 : 1000000000)) * 100) / 100).toLocaleString()} ${sizeUnit}</td>
+					<td>${sizeConvert(fileSize)}</td>
 				</tr>
 			`);
 			await setTimeout(() => {
@@ -125,4 +125,11 @@ function deleteFile(file) {
 		if (err) return alert(err);
 		document.getElementById(file).remove();
 	})
+}
+
+function sizeConvert(size) {
+	if (size >= 1000000000) return `${(Math.round(size / 10000000) / 100).toLocaleString()} GB`;
+	if (size >= 1000000) return `${(Math.round(size / 10000) / 100).toLocaleString()} MB`;
+	if (size >= 1000) return `${(Math.round(size / 10) / 100).toLocaleString()} KB`;
+	return `${size} B`;
 }

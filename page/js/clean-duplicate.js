@@ -75,18 +75,20 @@ function scan() {
 		document.getElementById("configuration").style.height = `${document.getElementById("progress").offsetHeight}px`;
 
 		let res = [];
+		let color = "#f9f9f9";
 		for (const files of Object.values(hashes)) {
 			if (files.length <= 1) continue;
 			let push = [];
 			for (const file of files) {
 				const fileSize = fs.statSync(file).size;
 				push.push(`
-					<tr id="${file}">
+					<tr id="${file}" style="background-color:${color}">
 						<td><i class="fa fa-trash fa-fw fg-red pointer-cursor" onClick="deleteFile('${file.replace(/\\/g, "\\\\")}')"></i> ${file}</td>
-						<td>${(Math.round((fileSize / 1000) * 100) / 100).toLocaleString()} KB</td>
+						<td>${sizeConvert(fileSize)}</td>
 					</tr>
 				`);
 			}
+			color = color === "#f9f9f9" ? "white" : "#f9f9f9";
 
 			await setTimeout(() => {
 				res.push(`<div>${push.join("")}</div>`);
@@ -161,4 +163,11 @@ function deleteFile(file) {
 		if (err) return alert(err);
 		document.getElementById(file).remove();
 	})
+}
+
+function sizeConvert(size) {
+	if (size >= 1000000000) return `${(Math.round(size / 10000000) / 100).toLocaleString()} GB`;
+	if (size >= 1000000) return `${(Math.round(size / 10000) / 100).toLocaleString()} MB`;
+	if (size >= 1000) return `${(Math.round(size / 10) / 100).toLocaleString()} KB`;
+	return `${size} B`;
 }
