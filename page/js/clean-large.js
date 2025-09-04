@@ -86,10 +86,9 @@ function scan() {
 						</table>
 					</div>
 				`;
-				document.getElementById("button-scan").setAttribute("onClick", "scan()");
 			}, 1000);
 		}
-		document.getElementById("button-scan").setAttribute("onClick", "scanLarge()");
+		document.getElementById("button-scan").setAttribute("onClick", "scan()");
 	});
 }
 
