@@ -14,7 +14,7 @@ function createWindow() {
 
 	}
 
-	const win = new electron.BrowserWindow({
+	const window = new electron.BrowserWindow({
 		width: 1150,
 		height: 600,
 		minWidth: 1150,
@@ -26,13 +26,13 @@ function createWindow() {
 		}
 	})
 
-	win.setMenu(null);
-	win.maximize();
-	win.loadFile(path.join("page", "index.html"));
+	window.removeMenu();
+	window.maximize();
+	window.loadFile(path.join("page", "index.html"));
 
-	win.webContents.on('will-navigate', handleRedirect);
+	window.webContents.on('will-navigate', handleRedirect);
 
-	remoteMain.enable(win.webContents);
+	remoteMain.enable(window.webContents);
 }
 
 electron.app.whenReady().then(createWindow);
