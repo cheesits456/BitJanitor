@@ -30,6 +30,7 @@ function createWindow() {
 	window.maximize();
 	window.loadFile(path.join("page", "index.html"));
 
+	window.on("resize", window.maximize);
 	window.webContents.on('will-navigate', handleRedirect);
 
 	remoteMain.enable(window.webContents);
