@@ -36,6 +36,7 @@ function createWindow() {
 }
 
 electron.app.whenReady().then(createWindow);
+
 process.on('uncaughtException', function (err) {
    console.log(err);
 });
